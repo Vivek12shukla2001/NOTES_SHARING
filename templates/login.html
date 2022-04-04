@@ -1,0 +1,62 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+
+{% ifequal error "no" %}
+<script>
+alert('Logged in successfully');
+window.location=('{% url 'profile' %}');
+</script>
+
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+ alert('invalid login,try again'):
+</script>
+{% endifequal %}
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2 class="text-center">
+             NEW STUDENT
+            </h2>
+            <hr>
+            <center><a href="{% url 'signup' %}" class="btn btn-danger text-white mt-5 ">Create account</a></center>
+
+        </div>
+
+        <div class="col-sm-6">
+            <h2 class="text-center">
+                User Login
+            </h2>
+            <hr>
+            <form method="post">
+                {% csrf_token %}
+                <label>E-mail Address</label>
+                <input type="email" class="form-control" placeholder="Enter Email-Id" name="email">
+                <label>Password</label>
+                <input type="password" class="form-control" placeholder="Enter your Password" name="pass">
+                <input type="submit" class="btn btn-danger mt-2" value="Login">
+
+
+
+
+            </form>
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+{% endblock body %}

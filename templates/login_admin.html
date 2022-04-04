@@ -1,0 +1,62 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+
+
+{% ifequal error "no" %}
+<script>
+ alert('Logged in successfully');
+ window.location=('{% url 'admin_home' %}');
+</script>
+
+{% endifequal %}
+
+
+
+{% ifequal error "yes" %}
+<script>
+ alert('invalid login,try again'):
+</script>
+{% endifequal %}
+
+
+
+
+<div class="container mt-5" style="background-color:whitesmoke">
+    <div class="row">
+        <div class="col-sm-6">
+           <img src="{% static 'image/adminlogin.jpg' %}" class="img-thumbnail my-2" style="width:100%; height:340px">
+        </div>
+
+        <div class="col-sm-6">
+            <h2 class="text-center">
+                Admin Login
+            </h2>
+            <hr>
+            <form method="POST">
+                {% csrf_token %}
+                <label>UserName</label>
+                <input type="text" class="form-control" placeholder="Enter username" name="uname">
+                <label>Password</label>
+                <input type="password" class="form-control" placeholder="Enter your Password" name="pwd">
+                <input type="submit" class="btn btn-primary mt-2" value="Login">
+
+
+
+
+            </form>
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+{% endblock body %}
